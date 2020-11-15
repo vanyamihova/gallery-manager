@@ -1,0 +1,35 @@
+﻿@model ImageEditorViewModel
+@{
+    ViewData["Title"] = "Image Editor";
+}
+
+    <div class="container">
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-2 text-left">
+                <button type="button" onclick="parent.location='/gallery/@Model.GalleryId/images/'" class="btn btn-primary">Go back</button>
+            </div>
+        </div>
+
+        <form action="/Image/Save" method="post" enctype="multipart/form-data" id="form-for-uploading-image-files" class="row">
+            <div class="col-12" style="margin-bottom: 30px">
+                @Html.Label("Image Label")
+                @Html.TextBoxFor(m => m.Label, new { @class = "form-control" })
+            </div>
+            <div class="col-6 text-right">
+                <button type="button" class="btn btn-success" onclick="$('#upload-image-file-input').click()">Upload Image</button>
+                <input id="upload-image-file-input" type="file" name="file" style="display: none;" onchange="document.getElementById('label-file').innerHTML=this.value;" />
+            </div>
+            <div class="col-6">
+                <p id="label-file">@Model.Filename</p>
+            </div>
+            <div class="col-12" style="margin-top: 30px">
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <input type="hidden" value="@Model.GalleryId" name="GalleryId" />
+                <input type="hidden" value="@Model.Filename" name="Filename" />
+                <button class="btn btn-success" type="submit">Save</button>
+            </div>
+            <div class="col-12">
+                <p>@Model.Message</p>
+            </div>
+        </form>
+    </div>

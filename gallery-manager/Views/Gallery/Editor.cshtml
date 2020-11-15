@@ -1,0 +1,28 @@
+﻿@model GalleryEditorViewModel
+@{
+    ViewData["Title"] = "Gallery Editor";
+}
+
+    <div class="container">
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-2 text-left">
+                <button type="button" onclick="parent.location='/'" class="btn btn-primary">Go back</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <form action="/Gallery/Save" method="post">
+                <div class="col-12" style="margin-bottom: 30px">
+                    @Html.Label("Gallery Label")
+                    @Html.TextBoxFor(m => m.Label, new { @class = "form-control" })
+                </div>
+                <div class="col-12">
+                    <input type="hidden" value="@Model.Id" name="id" />
+                    <button class="btn btn-success" type="submit">Save</button>
+                </div>
+                <div class="col-12">
+                    <p>@Model.Message</p>
+                </div>
+            </form>
+        </div>
+    </div>

@@ -1,0 +1,37 @@
+﻿@model GalleryListViewModel
+@{
+    ViewData["Title"] = "Galleries";
+}
+
+    <div class="container">
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-12 text-right">
+                <button type="button" class="btn btn-success" onclick="parent.location='/gallery/create'">Create new Gallery</button>
+            </div>
+        </div>
+
+        <ul class="list-group offset-top">
+            <li class="list-group-item list-group-item-primary">
+                <span class="row header-col">
+                    <span class="col-1 text-center">ID</span>
+                    <span class="col-8 text-left">NAME</span>
+                    <span class="col-3 text-right">ACTIONS</span>
+                </span>
+            </li>
+            @foreach (var Gallery in Model.Galleries)
+            {
+                <li class="list-group-item">
+                    <span class="row text-center">
+                        <span class="col-1">@Gallery.Id</span>
+                        <span class="col-8 text-left">
+                            <a href="~/gallery/@Gallery.Id/images/">@Gallery.Label</a>
+                        </span>
+                        <span class="col-3 text-right">
+                            <button type="button" class="btn btn-primary" onclick="parent.location='/gallery/@Gallery.Id/edit'">Edit</button>
+                            <button type="button" class="btn btn-danger" onclick="parent.location='/gallery/@Gallery.Id/delete'">Delete</button>
+                        </span>
+                    </span>
+                </li>
+            }
+        </ul>
+    </div>
